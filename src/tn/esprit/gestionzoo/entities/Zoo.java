@@ -4,14 +4,18 @@ public class Zoo {
 
     public static final int NUMBER_OF_CAGES = 25;
     private Animal[] animals;
+    private Aquatic[] aquaticAnimals;
     private String name, city;
     private int nbrAnimals;
+    private int nbrAquatics;
+
 
     public Zoo() {
     }
 
     public Zoo(String name, String city) {
         animals = new Animal[NUMBER_OF_CAGES];
+        aquaticAnimals = new Aquatic[10];
         this.name = name;
         this.city = city;
     }
@@ -98,7 +102,34 @@ public class Zoo {
         }
         return index;
     }
+    public void addAquaticAnimal(Aquatic aquatic){
 
+        aquaticAnimals[nbrAquatics] = aquatic;
+        nbrAquatics++;
+
+
+    }
+    public void swimAquatic(){
+        for (int i=0;i<nbrAquatics;i++){
+            aquaticAnimals[i].swim();
+        }
+    }
+
+    public void displayNumberOfAquaticsByType(){
+        int nbrDolphins=0;
+        int nbrPenguins=0;
+        for (int i=0;i<nbrAquatics;i++){
+            if(aquaticAnimals[i] instanceof Dolphin){
+                nbrDolphins++;
+            }else if (aquaticAnimals[i] instanceof Penguin){
+                nbrPenguins++;
+            }
+        }
+        System.out.println(nbrDolphins+' '+nbrPenguins);
+
+
+
+        }
     public boolean isZooFull() {
         return nbrAnimals == NUMBER_OF_CAGES;
     }
